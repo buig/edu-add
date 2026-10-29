@@ -1,0 +1,121 @@
+site_name: Acceso a Datos
+site_description: Material del módulo de Acceso a Datos
+site_author: Antonio Calabuig Puigvert & Sebastián Villa Ponce
+site_url: https://add.buig.pro
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Modo oscuro
+    - scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  icon:
+    repo: fontawesome/brands/github
+    annotation: material/plus-circle
+
+plugins:
+  - search
+
+markdown_extensions:
+  # Markdown base "vitaminado"
+  - admonition
+  - footnotes
+  - attr_list
+  - md_in_html
+  - def_list
+  - toc:
+      permalink: true
+
+  # pymdownx (lo bueno para docs técnicas)
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+
+  - UP1 · Acceso a ficheros:
+      - Bloque 1. Acceso a ficheros: up1/bloque-1.md
+      - Práctica 1: practicas/practica-up1-1.md
+      - Bloque 2. Persistencia en ficheros CSV: up1/bloque-2.md
+      - Práctica 2: practicas/practica-up1-2.md
+      - Bloque 3. Persistencia en ficheros XML: up1/bloque-3.md
+      - Práctica 3: practicas/practica-up1-3.md
+      - Práctica 3 Ampliación: practicas/practica-up1-3-ampliacion.md
+
+  - UP2 · Acceso a Bases de Datos Relacionales:
+      - Bloque 1. Conexión y creación de la base de datos: up2/bloque-1.md
+      - Bloque 2. Operaciones CRUD, transacciones y buenas prácticas: up2/bloque-2.md
+      - Práctica 4: practicas/practica-up2-4.md
+      - Práctica 4 Ampliación: practicas/practica-up2-4-ampliacion.md
+
+  - UP3 · Spring Boot. Modelo Cliente - Servidor:
+      - Bloque 1. Spring y Spring Boot: up3/bloque-1.md
+      - Bloque 2. Modelo, Vista, Controlador (MVC): up3/bloque-2.md
+      - Bloque 3. Primer controlador: up3/bloque-3.md
+      - Práctica 5: practicas/practica-up3-1.md
+
+  - UP4 · Modelo de datos. Entidades:
+      - Bloque 1. Sistemas Gestores de Bases de Datos con Docker: up4/bloque-1.md
+      - Bloque 2. Desfase Objeto-Relacional. JDBC: up4/bloque-2.md
+      - Bloque 3. Hibernate. Mapeo de Entidades: up4/bloque-3.md
+      - Bloque 4. Mejoras del proyecto. Importaciones. Proyecto Lombok: up4/bloque-4.md
+      - Práctica 6: practicas/practica-up4-1.md
+
+  - UP5 · Modelo de datos. Relaciones:
+      - Bloque 1. Relaciones a 1 a 1: up5/bloque-1.md
+      - Bloque 2. Relaciones 1 a N: up5/bloque-2.md
+      - Bloque 3. Relaciones N a M: up5/bloque-3.md
+      - Bloque 4. Relaciones N a M con atributos: up5/bloque-4.md
+      - Práctica 7: practicas/practica-up5-1.md
+
+  - UP6 · Creación de una API REST con Spring Boot:
+      - Teoría: up6/section-1.md
+      - Guía práctica (IntelliJ): up6/section-2.md
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/buig

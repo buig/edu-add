@@ -1,0 +1,2020 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material del módulo de Acceso a Datos">
+      
+      
+        <meta name="author" content="Antonio Calabuig Puigvert & Sebastián Villa Ponce">
+      
+      
+        <link rel="canonical" href="https://add.buig.pro/practicas/practica-up4-1/">
+      
+      
+        <link rel="prev" href="../../up4/bloque-4/">
+      
+      
+        <link rel="next" href="../../up5/bloque-1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Práctica 6 - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-6-mapeo-de-la-primera-entidad-con-hibernate" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP1 · Acceso a ficheros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP1 · Acceso a ficheros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Acceso a ficheros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Persistencia en ficheros CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Persistencia en ficheros XML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up1-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up1-3-ampliacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 3 Ampliación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP2 · Acceso a Bases de Datos Relacionales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP2 · Acceso a Bases de Datos Relacionales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up2/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Conexión y creación de la base de datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up2/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Operaciones CRUD, transacciones y buenas prácticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up2-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up2-4-ampliacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 4 Ampliación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP3 · Spring Boot. Modelo Cliente - Servidor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP3 · Spring Boot. Modelo Cliente - Servidor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up3/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Spring y Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up3/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Modelo, Vista, Controlador (MVC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up3/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Primer controlador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP4 · Modelo de datos. Entidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP4 · Modelo de datos. Entidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Sistemas Gestores de Bases de Datos con Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Desfase Objeto-Relacional. JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Hibernate. Mapeo de Entidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4. Mejoras del proyecto. Importaciones. Proyecto Lombok
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 6
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enunciado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidad-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionalidad del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fichero de importación de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-e-imagenes-de-solucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código e imágenes de solución
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP5 · Modelo de datos. Relaciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP5 · Modelo de datos. Relaciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Relaciones a 1 a 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Relaciones 1 a N
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Relaciones N a M
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4. Relaciones N a M con atributos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica-up5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP6 · Creación de una API REST con Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP6 · Creación de una API REST con Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up6/section-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up6/section-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía práctica (IntelliJ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enunciado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enunciado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidad-del-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionalidad del sistema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fichero-de-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fichero de importación de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-e-imagenes-de-solucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Código e imágenes de solución
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-6-mapeo-de-la-primera-entidad-con-hibernate">Práctica 6: Mapeo de la primera entidad con Hibernate<a class="headerlink" href="#practica-6-mapeo-de-la-primera-entidad-con-hibernate" title="Permanent link">&para;</a></h1>
+<p>⬅️ <em>Pertenece a la unidad</em> <a href="../../up4/bloque-1/">UP4</a></p>
+<h2 id="enunciado">Enunciado<a class="headerlink" href="#enunciado" title="Permanent link">&para;</a></h2>
+<p>Crea una pequeña base de datos que tenga las siguientes características:</p>
+<ul>
+<li>Debe tener las entidades:<ul>
+<li>Alumno (nia, nombre, apellidos, email, notaMediaCursoAnterior(BigDecimal))</li>
+<li>Curso (id, nombre, ciclo, aula, Turno(Enum))</li>
+<li>Modulo (id, nombre,  código de 4 caracteres, horasSemanales, horasTotales, Curso(Enum), optativo, activo)</li>
+</ul>
+</li>
+<li>Se deben de usar las siguientes anotaciones:<ul>
+<li>Entidad del sistema</li>
+<li>Tabla de BD con el nombre asociado o nombre por defecto</li>
+<li>Autogenerardor de <code>getters y setters, equals, toString y hashCode</code></li>
+<li>Constructor lleno</li>
+<li>Constructor vacío</li>
+<li>Clave primaria</li>
+<li>Clave autogenerada</li>
+<li>Atributo mapeable varios  atributos de comportamiento<ul>
+<li>Estrategia de generación de clave primaria</li>
+<li>Nulleable</li>
+<li>Longitud máxima</li>
+<li>Valor único</li>
+<li>Precisión</li>
+<li>Escala</li>
+<li>Enumeración mediante String</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Comportamiento: Alumno ← N:1 → Curso ← N:M → Asignatura</li>
+</ul>
+<h2 id="funcionalidad-del-sistema">Funcionalidad del sistema<a class="headerlink" href="#funcionalidad-del-sistema" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Generar un programa que autogenere la BD.</li>
+<li>Generar un programa que autogenere los datos de la BD.</li>
+<li>Realizar el mapeo de una sola de las entidades (Alumno). Todavía no es necesario incluir las relaciones, únicamente los atributos y el identificador.</li>
+<li>Añadir un archivo de importación de datos para dicha entidad, con al menos <strong>5 registros por entidad</strong>. Puedes ayudarte aquí de la IA para generar los registros de forma aleatoria.</li>
+<li>Importar los datos al comienzo de la aplicación de forma automática, el fichero debe llamarse <code>import.sql</code> para que Hibernate lo lea automáticamente sin ninguna indicación y estar en <code>resources</code>.</li>
+<li>Generar y comprobar todos los ciclos de vida básicos de una entidad <code>(Transient, Managed, Detached y “Merged”)</code> a través de las operaciones <code>CRUD</code> usando el lanzador <code>CommandLinner</code>.</li>
+</ul>
+<h2 id="fichero-de-importacion-de-datos">Fichero de importación de datos<a class="headerlink" href="#fichero-de-importacion-de-datos" title="Permanent link">&para;</a></h2>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- Cursos</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'DAM 1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'DAM'</span><span class="p">,</span><span class="w"> </span><span class="s1">'A1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'MATUTINO'</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'DAM 2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'DAM'</span><span class="p">,</span><span class="w"> </span><span class="s1">'A2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'MATUTINO'</span><span class="p">);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'DAW 1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'DAW'</span><span class="p">,</span><span class="w"> </span><span class="s1">'B1'</span><span class="p">,</span><span class="w"> </span><span class="s1">'VESPERTINO'</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'DAW 2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'DAW'</span><span class="p">,</span><span class="w"> </span><span class="s1">'B2'</span><span class="p">,</span><span class="w"> </span><span class="s1">'VESPERTINO'</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">-- Módulos</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">modulo</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codigo</span><span class="p">,</span><span class="w"> </span><span class="n">horas_semanales</span><span class="p">,</span><span class="w"> </span><span class="n">horas_totales</span><span class="p">,</span><span class="w"> </span><span class="n">curso</span><span class="p">,</span><span class="w"> </span><span class="n">optativo</span><span class="p">,</span><span class="w"> </span><span class="n">activo</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Programacion Aplicaciones Multiplataforma'</span><span class="p">,</span><span class="w"> </span><span class="s1">'PAM1'</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="s1">'SEGUNDO'</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">modulo</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codigo</span><span class="p">,</span><span class="w"> </span><span class="n">horas_semanales</span><span class="p">,</span><span class="w"> </span><span class="n">horas_totales</span><span class="p">,</span><span class="w"> </span><span class="n">curso</span><span class="p">,</span><span class="w"> </span><span class="n">optativo</span><span class="p">,</span><span class="w"> </span><span class="n">activo</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Acceso a Datos'</span><span class="p">,</span><span class="w"> </span><span class="s1">'AD01'</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="s1">'SEGUNDO'</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">-- Alumnos</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Ana'</span><span class="p">,</span><span class="w"> </span><span class="s1">'García López'</span><span class="p">,</span><span class="w"> </span><span class="s1">'ana.garcia.dam1@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">75</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Carlos'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Pérez Martín'</span><span class="p">,</span><span class="w"> </span><span class="s1">'carlos.perez.dam1@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="mi">20</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Lucía'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Fernández Ruiz'</span><span class="p">,</span><span class="w"> </span><span class="s1">'lucia.fernandez.dam2@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">10</span><span class="p">);</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'David'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sánchez Torres'</span><span class="p">,</span><span class="w"> </span><span class="s1">'david.sanchez.dam2@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">95</span><span class="p">);</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'María'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Romero Gil'</span><span class="p">,</span><span class="w"> </span><span class="s1">'maria.romero.daw1@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">40</span><span class="p">);</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Javier'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Morales León'</span><span class="p">,</span><span class="w"> </span><span class="s1">'javier.morales.daw1@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="mi">85</span><span class="p">);</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Elena'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Ruiz Navarro'</span><span class="p">,</span><span class="w"> </span><span class="s1">'elena.ruiz.daw2@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">30</span><span class="p">);</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'Pablo'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Gil Herrera'</span><span class="p">,</span><span class="w"> </span><span class="s1">'pablo.gil.daw2@example.com'</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">60</span><span class="p">);</span>
+</span></code></pre></div>
+<h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
+<p>Realizar una captura de pantalla de la consola de registro de Spring en la que se vea cómo Hibernate:</p>
+<ul>
+<li>Crea las tablas.</li>
+<li>Importa los datos.</li>
+<li>Comprueba el ciclo de vida creando una clase <code>TestAlumno</code> en una carpeta test dentro de java NO EL TEST RAIZ y deja rastro en la consola usando la clase <code>Logger</code>.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Test Unitario vs Test de funcionamiento propio</p>
+<p>La carpeta <code>test</code> dentro del paquete <code>java/com.usuario.proyecto</code> no es la carpeta <code>test</code> que hay en paralelo con la carpeta <code>main</code> . La que hay en paralelo con <code>main</code> es la carpeta que tendrá los test unitarios para comprobar el comportamiento funcional del programa. La carpeta <code>test</code> interna tendrá una clase <code>TestAlumno</code> que será para probar de forma interna el funcionamiento automatizado del ciclo de vida de la clase <code>Alumno</code> .</p>
+</div>
+<h2 id="codigo-e-imagenes-de-solucion">Código e imágenes de solución<a class="headerlink" href="#codigo-e-imagenes-de-solucion" title="Permanent link">&para;</a></h2>
+<p><img alt="0001_Ejemplo_tabla_datos_creada_1.png" src="../img/up4-practica-1/cap1.png" /></p>
+<p><img alt="0002_Ejemplo_tabla_datos_creada_2.png" src="../img/up4-practica-1/cap2.png" /></p>
+<p><img alt="Tablas Alumno, Curso y Modulo creadas con datos importados automáticamente. Sin relaciones puestas aún." src="../img/up4-practica-1/cap3.png" /></p>
+<p>Tablas Alumno, Curso y Modulo creadas con datos importados automáticamente. Sin relaciones puestas aún.</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Texto que debería salir en la consola para la primera parte de la actividad</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p">.</span><span class="w">   </span><span class="n">____</span><span class="w">          </span><span class="n">_</span><span class="w">            </span><span class="n">__</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="n">_</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w"> </span><span class="o">/</span><span class="err">\\</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">___</span><span class="err">'</span><span class="n">_</span><span class="w"> </span><span class="n">__</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="nf">_</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="n">_</span><span class="w"> </span><span class="n">__</span><span class="w">  </span><span class="n">__</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="err">\</span><span class="n">___</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">'</span><span class="n">_</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">'</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">'</span><span class="n">_</span><span class="w"> </span><span class="err">\</span><span class="o">/</span><span class="w"> </span><span class="n">_</span><span class="err">`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w"> </span><span class="err">\\</span><span class="o">/</span><span class="w">  </span><span class="n">___</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="n">_</span><span class="p">)</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="err">'</span><span class="w">  </span><span class="o">|</span><span class="n">____</span><span class="o">|</span><span class="w"> </span><span class="p">.</span><span class="na">__</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="o">|</span><span class="n">_</span><span class="err">\</span><span class="n">__</span><span class="p">,</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">/</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w"> </span><span class="o">=========|</span><span class="n">_</span><span class="o">|==============|</span><span class="n">___</span><span class="o">/=/</span><span class="n">_</span><span class="o">/</span><span class="n">_</span><span class="o">/</span><span class="n">_</span><span class="o">/</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">Spring</span><span class="w"> </span><span class="n">Boot</span><span class="w"> </span><span class="p">::</span><span class="w">                </span><span class="p">(</span><span class="n">v4</span><span class="mf">.1.0</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">58.521</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">Hibernate2Application</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">Starting</span><span class="w"> </span><span class="n">Hibernate2Application</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="mf">26.0.1</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PID</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="p">(</span><span class="n">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Sebastián</span><span class="err">\</span><span class="n">IdeaProjects</span><span class="err">\</span><span class="n">Hiberante2</span><span class="err">\</span><span class="n">target</span><span class="err">\</span><span class="n">classes</span><span class="w"> </span><span class="n">started</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">Sebastián</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="err">\</span><span class="n">Users</span><span class="err">\</span><span class="n">Sebastián</span><span class="err">\</span><span class="n">IdeaProjects</span><span class="err">\</span><span class="n">Hiberante2</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">58.524</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">Hibernate2Application</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="n">set</span><span class="p">,</span><span class="w"> </span><span class="n">falling</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="kd">to</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">profile</span><span class="p">:</span><span class="w"> </span><span class="s">"default"</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">58.804</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">d</span><span class="p">.</span><span class="na">r</span><span class="p">.</span><span class="na">c</span><span class="p">.</span><span class="na">RepositoryConfigurationDelegate</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Bootstrapping</span><span class="w"> </span><span class="n">Spring</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">repositories</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">DEFAULT</span><span class="w"> </span><span class="n">mode</span><span class="p">.</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">58.815</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">d</span><span class="p">.</span><span class="na">r</span><span class="p">.</span><span class="na">c</span><span class="p">.</span><span class="na">RepositoryConfigurationDelegate</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Finished</span><span class="w"> </span><span class="n">Spring</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="n">scanning</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="n">ms</span><span class="p">.</span><span class="w"> </span><span class="n">Found</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">repository</span><span class="w"> </span><span class="n">interfaces</span><span class="p">.</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">58.970</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">orm</span><span class="p">.</span><span class="na">jpa</span><span class="w">                    </span><span class="p">:</span><span class="w"> </span><span class="n">HHH008540</span><span class="p">:</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="n">PersistenceUnitInfo</span><span class="w"> </span><span class="o">[</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="k">default</span><span class="o">]</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.006</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">orm</span><span class="p">.</span><span class="na">core</span><span class="w">                   </span><span class="p">:</span><span class="w"> </span><span class="n">HHH000001</span><span class="p">:</span><span class="w"> </span><span class="n">Hibernate</span><span class="w"> </span><span class="n">ORM</span><span class="w"> </span><span class="n">core</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="mf">7.4.1</span><span class="p">.</span><span class="na">Final</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.263</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">o</span><span class="p">.</span><span class="na">j</span><span class="p">.</span><span class="na">p</span><span class="p">.</span><span class="na">SpringPersistenceUnitInfo</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">LoadTimeWeaver</span><span class="w"> </span><span class="n">setup</span><span class="p">:</span><span class="w"> </span><span class="n">ignoring</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="kd">class</span> <span class="nc">transformer</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.281</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Starting</span><span class="p">...</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.513</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">pool</span><span class="p">.</span><span class="na">HikariPool</span><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Added</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">ConnectionImpl</span><span class="err">@</span><span class="mi">27</span><span class="n">e44e9c</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.514</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Start</span><span class="w"> </span><span class="n">completed</span><span class="p">.</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mf">59.569</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">orm</span><span class="p">.</span><span class="na">connections</span><span class="p">.</span><span class="na">pooling</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="n">HHH10001005</span><span class="p">:</span><span class="w"> </span><span class="n">Database</span><span class="w"> </span><span class="n">info</span><span class="p">:</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="n">Database</span><span class="w"> </span><span class="n">JDBC</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="o">[</span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//localhost:3308/PruebasHiberante2?createDatabaseIfNotExist=true]</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="n">Database</span><span class="w"> </span><span class="n">driver</span><span class="p">:</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="n">Connector</span><span class="o">/</span><span class="n">J</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="n">Database</span><span class="w"> </span><span class="n">dialect</span><span class="p">:</span><span class="w"> </span><span class="n">MySQLDialect</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="n">Database</span><span class="w"> </span><span class="n">version</span><span class="p">:</span><span class="w"> </span><span class="mf">26.7</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="n">Default</span><span class="w"> </span><span class="n">catalog</span><span class="o">/</span><span class="n">schema</span><span class="p">:</span><span class="w"> </span><span class="n">PruebasHiberante2</span><span class="o">/</span><span class="n">undefined</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="n">Autocommit</span><span class="w"> </span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">undefined</span><span class="o">/</span><span class="n">unknown</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="n">Isolation</span><span class="w"> </span><span class="n">level</span><span class="p">:</span><span class="w"> </span><span class="n">REPEATABLE_READ</span><span class="w"> </span><span class="o">[</span><span class="k">default</span><span class="w"> </span><span class="n">REPEATABLE_READ</span><span class="o">]</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="n">JDBC</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="n">none</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="n">Pool</span><span class="p">:</span><span class="w"> </span><span class="n">DataSourceConnectionProvider</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="n">Minimum</span><span class="w"> </span><span class="n">pool</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="n">undefined</span><span class="o">/</span><span class="n">unknown</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="n">Maximum</span><span class="w"> </span><span class="n">pool</span><span class="w"> </span><span class="n">size</span><span class="p">:</span><span class="w"> </span><span class="n">undefined</span><span class="o">/</span><span class="n">unknown</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.115</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">orm</span><span class="p">.</span><span class="na">core</span><span class="w">                   </span><span class="p">:</span><span class="w"> </span><span class="n">HHH000489</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">JTA</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="nf">available</span><span class="w"> </span><span class="p">(</span><span class="n">set</span><span class="w"> </span><span class="err">'</span><span class="n">hibernate</span><span class="p">.</span><span class="na">transaction</span><span class="p">.</span><span class="na">jta</span><span class="p">.</span><span class="na">platform</span><span class="err">'</span><span class="w"> </span><span class="kd">to</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">JTA</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="n">integration</span><span class="p">)</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">    </span><span class="n">drop</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="n">alumno</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="n">drop</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="n">curso</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="n">drop</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">exists</span><span class="w"> </span><span class="n">modulo</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">        </span><span class="n">nia</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">        </span><span class="n">notaMediaCursoAnterior</span><span class="w"> </span><span class="nf">decimal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">        </span><span class="n">nombre</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">        </span><span class="n">apellidos</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">        </span><span class="n">email</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">        </span><span class="n">primary</span><span class="w"> </span><span class="nf">key</span><span class="w"> </span><span class="p">(</span><span class="n">nia</span><span class="p">)</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="nf">curso</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">        </span><span class="n">id</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">        </span><span class="n">aula</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">        </span><span class="n">ciclo</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">        </span><span class="n">nombre</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">        </span><span class="n">turno</span><span class="w"> </span><span class="nf">enum</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">MATUTINO</span><span class="sc">','</span><span class="n">VESPERTINO</span><span class="err">'</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">        </span><span class="n">primary</span><span class="w"> </span><span class="nf">key</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">    </span><span class="n">create</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="nf">modulo</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">        </span><span class="n">activo</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">        </span><span class="n">codigo</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="w">        </span><span class="n">horas_semanales</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="w">        </span><span class="n">horas_totales</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="w">        </span><span class="n">id</span><span class="w"> </span><span class="n">integer</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="n">auto_increment</span><span class="p">,</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="w">        </span><span class="n">optativo</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="w">        </span><span class="n">nombre</span><span class="w"> </span><span class="nf">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="w">        </span><span class="n">curso</span><span class="w"> </span><span class="nf">enum</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">PRIMERO</span><span class="sc">','</span><span class="n">SEGUNDO</span><span class="err">'</span><span class="p">)</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="w">        </span><span class="n">primary</span><span class="w"> </span><span class="nf">key</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="w">    </span><span class="n">alter</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">alumno</span><span class="w"> </span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="w">       </span><span class="n">add</span><span class="w"> </span><span class="n">constraint</span><span class="w"> </span><span class="n">UKdlqu0nadbeiwn48uty3rus51y</span><span class="w"> </span><span class="nf">unique</span><span class="w"> </span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">DAM</span><span class="w"> </span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">DAM</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">A1</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">MATUTINO</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">DAM</span><span class="w"> </span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">DAM</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">A2</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">MATUTINO</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">DAW</span><span class="w"> </span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">DAW</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">B1</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">VESPERTINO</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">curso</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">ciclo</span><span class="p">,</span><span class="w"> </span><span class="n">aula</span><span class="p">,</span><span class="w"> </span><span class="n">turno</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">DAW</span><span class="w"> </span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">DAW</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">B2</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">VESPERTINO</span><span class="err">'</span><span class="p">)</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">modulo</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codigo</span><span class="p">,</span><span class="w"> </span><span class="n">horas_semanales</span><span class="p">,</span><span class="w"> </span><span class="n">horas_totales</span><span class="p">,</span><span class="w"> </span><span class="n">curso</span><span class="p">,</span><span class="w"> </span><span class="n">optativo</span><span class="p">,</span><span class="w"> </span><span class="n">activo</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Programacion</span><span class="w"> </span><span class="n">Aplicaciones</span><span class="w"> </span><span class="n">Multiplataforma</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">PAM1</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">SEGUNDO</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">modulo</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">codigo</span><span class="p">,</span><span class="w"> </span><span class="n">horas_semanales</span><span class="p">,</span><span class="w"> </span><span class="n">horas_totales</span><span class="p">,</span><span class="w"> </span><span class="n">curso</span><span class="p">,</span><span class="w"> </span><span class="n">optativo</span><span class="p">,</span><span class="w"> </span><span class="n">activo</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Acceso</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Datos</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">AD01</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">SEGUNDO</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Ana</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">García</span><span class="w"> </span><span class="n">López</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">ana</span><span class="p">.</span><span class="na">garcia</span><span class="p">.</span><span class="na">dam1</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">8.75</span><span class="p">)</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Carlos</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Pérez</span><span class="w"> </span><span class="n">Martín</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">carlos</span><span class="p">.</span><span class="na">perez</span><span class="p">.</span><span class="na">dam1</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">7.20</span><span class="p">)</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Lucía</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Fernández</span><span class="w"> </span><span class="n">Ruiz</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">lucia</span><span class="p">.</span><span class="na">fernandez</span><span class="p">.</span><span class="na">dam2</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">9.10</span><span class="p">)</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">David</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Sánchez</span><span class="w"> </span><span class="n">Torres</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">david</span><span class="p">.</span><span class="na">sanchez</span><span class="p">.</span><span class="na">dam2</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">6.95</span><span class="p">)</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">María</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Romero</span><span class="w"> </span><span class="n">Gil</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">maria</span><span class="p">.</span><span class="na">romero</span><span class="p">.</span><span class="na">daw1</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">8.40</span><span class="p">)</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Javier</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Morales</span><span class="w"> </span><span class="n">León</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">javier</span><span class="p">.</span><span class="na">morales</span><span class="p">.</span><span class="na">daw1</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">7.85</span><span class="p">)</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Elena</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Ruiz</span><span class="w"> </span><span class="n">Navarro</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">elena</span><span class="p">.</span><span class="na">ruiz</span><span class="p">.</span><span class="na">daw2</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">9.30</span><span class="p">)</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="nf">alumno</span><span class="w"> </span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">(</span><span class="err">'</span><span class="n">Pablo</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">Gil</span><span class="w"> </span><span class="n">Herrera</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'</span><span class="n">pablo</span><span class="p">.</span><span class="na">gil</span><span class="p">.</span><span class="na">daw2</span><span class="nd">@example.com</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="mf">6.60</span><span class="p">)</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.338</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">LocalContainerEntityManagerFactoryBean</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Initialized</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">persistence</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="err">'</span><span class="k">default</span><span class="err">'</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.440</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">Hibernate2Application</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">Started</span><span class="w"> </span><span class="n">Hibernate2Application</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mf">2.149</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="p">(</span><span class="n">process</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mf">2.569</span><span class="p">)</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.445</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">LocalContainerEntityManagerFactoryBean</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Closing</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">persistence</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="err">'</span><span class="k">default</span><span class="err">'</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.447</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Shutdown</span><span class="w"> </span><span class="n">initiated</span><span class="p">...</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T11</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mf">00.452</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">11476</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Shutdown</span><span class="w"> </span><span class="n">completed</span><span class="p">.</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="n">Process</span><span class="w"> </span><span class="n">finished</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">La forma de un CommandLineRunner</p>
+<p><strong>El método anotado con <code>@Bean</code> devuelve un objeto de tipo <code>CommandLineRunner</code>. Como <code>CommandLineRunner</code> es una</strong> <a href="https://docs.spring.io/spring-boot/api/java/org/springframework/boot/CommandLineRunner.html">interfaz funcional</a><strong>, Java nos permite crear ese objeto mediante una expresión lambda en lugar de tener que implementar la interfaz mediante una clase anónima.</strong></p>
+<p><strong>Una interfaz funcional</strong> es una interfaz que contiene <strong>un único método abstracto</strong>. Gracias a esta característica, Java puede asociar una expresión lambda con la implementación de ese único método. En el caso de <code>CommandLineRunner</code>, el método abstracto es:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">String</span><span class="p">...</span><span class="na">args</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Por ello, la lambda:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">args</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">testAlumno</span><span class="p">.</span><span class="na">ejecutar</span><span class="p">();</span>
+</span></code></pre></div>
+<p>representa la implementación de ese método <code>run()</code>. El parámetro <code>args</code> corresponde a los argumentos de línea de comandos que recibe la aplicación al iniciarse y, aunque en este caso no se utilicen, deben aparecer porque forman parte de la firma del método.</p>
+<p>Finalmente, cuando Spring Boot termina de arrancar y ha creado todos los Beans de la aplicación, detecta automáticamente el Bean de tipo <code>CommandLineRunner</code> e invoca su método <code>run()</code>. Como nuestra implementación consiste en llamar a:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">testAlumno</span><span class="p">.</span><span class="na">ejecutar</span><span class="p">();</span>
+</span></code></pre></div>
+<p>ese será el código que se ejecutará automáticamente al iniciar la aplicación.</p>
+</div>
+<p>La salida de la segunda parte debería ser algo así:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.355</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">LocalContainerEntityManagerFactoryBean</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Initialized</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">persistence</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="err">'</span><span class="k">default</span><span class="err">'</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.465</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">Hibernate2Application</span><span class="w">     </span><span class="p">:</span><span class="w"> </span><span class="n">Started</span><span class="w"> </span><span class="n">Hibernate2Application</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mf">2.057</span><span class="w"> </span><span class="n">seconds</span><span class="w"> </span><span class="p">(</span><span class="n">process</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mf">2.394</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.500</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="n">TRANSIENT</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="n">nia</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="o">=</span><span class="n">Sebastián</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="o">=</span><span class="n">Villa</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="na">villaponce</span><span class="nd">@edu.gva.es</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="o">=</span><span class="mf">8.88</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.501</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="err">¿</span><span class="n">Gestionado</span><span class="w"> </span><span class="n">por</span><span class="w"> </span><span class="n">EntityManager</span><span class="o">?</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">insert</span><span class="w"> </span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="n">into</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="nf">alumno</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="p">(</span><span class="n">apellidos</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">values</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="p">(</span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">)</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.539</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="n">MANAGED</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="n">nia</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="o">=</span><span class="n">Sebastián</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="o">=</span><span class="n">Villa</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="na">villaponce</span><span class="nd">@edu.gva.es</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="o">=</span><span class="mf">8.88</span><span class="p">)</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.539</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="err">¿</span><span class="n">Gestionado</span><span class="w"> </span><span class="n">por</span><span class="w"> </span><span class="n">EntityManager</span><span class="o">?</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.539</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="n">Modificamos</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="n">nota</span><span class="w"> </span><span class="n">sin</span><span class="w"> </span><span class="n">persist</span><span class="w"> </span><span class="n">ni</span><span class="w"> </span><span class="n">merge</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.539</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">Alumno</span><span class="w"> </span><span class="n">modificado</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="n">nia</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="o">=</span><span class="n">Sebastián</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="o">=</span><span class="n">Villa</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="na">villaponce</span><span class="nd">@edu.gva.es</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="o">=</span><span class="mf">9.51</span><span class="p">)</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="n">update</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="n">alumno</span><span class="w"> </span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="n">set</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="n">apellidos</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="n">email</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span><span class="n">nombre</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">        </span><span class="n">notaMediaCursoAnterior</span><span class="o">=?</span><span class="w"> </span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="n">where</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="n">nia</span><span class="o">=?</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.556</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mf">4.</span><span class="w"> </span><span class="n">DETACHED</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.556</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="err">¿</span><span class="n">Gestionado</span><span class="w"> </span><span class="n">por</span><span class="w"> </span><span class="n">EntityManager</span><span class="o">?</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.556</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">Modificamos</span><span class="w"> </span><span class="n">el</span><span class="w"> </span><span class="n">objeto</span><span class="w"> </span><span class="n">detached</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Alumno</span><span class="p">(</span><span class="n">nia</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="o">=</span><span class="n">Sebastián</span><span class="p">,</span><span class="w"> </span><span class="n">apellidos</span><span class="o">=</span><span class="n">Villa</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="o">=</span><span class="n">s</span><span class="p">.</span><span class="na">villaponce</span><span class="nd">@edu.gva.es</span><span class="p">,</span><span class="w"> </span><span class="n">notaMediaCursoAnterior</span><span class="o">=</span><span class="mf">5.00</span><span class="p">)</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">    </span><span class="n">select</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">nia</span><span class="p">,</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">apellidos</span><span class="p">,</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">email</span><span class="p">,</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">nombre</span><span class="p">,</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">notaMediaCursoAnterior</span><span class="w"> </span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">    </span><span class="n">from</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">        </span><span class="n">alumno</span><span class="w"> </span><span class="n">a1_0</span><span class="w"> </span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">    </span><span class="n">where</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">        </span><span class="n">a1_0</span><span class="p">.</span><span class="na">nia</span><span class="o">=?</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.580</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mf">5.</span><span class="w"> </span><span class="n">MERGE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">vuelve</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">estar</span><span class="w"> </span><span class="n">gestionado</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.580</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">Original</span><span class="w"> </span><span class="n">gestionado</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.580</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="n">main</span><span class="o">]</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="na">s</span><span class="p">.</span><span class="na">hibernate2</span><span class="p">.</span><span class="na">test</span><span class="p">.</span><span class="na">TestAlumno</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="n">Devuelto</span><span class="w"> </span><span class="n">por</span><span class="w"> </span><span class="n">merge</span><span class="w"> </span><span class="n">gestionado</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="nl">Hibernate</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="w">    </span><span class="n">update</span>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="w">        </span><span class="n">alumno</span><span class="w"> </span>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="w">    </span><span class="n">set</span>
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="w">        </span><span class="n">apellidos</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="w">        </span><span class="n">email</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="w">        </span><span class="n">nombre</span><span class="o">=?</span><span class="p">,</span>
+</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="w">        </span><span class="n">notaMediaCursoAnterior</span><span class="o">=?</span><span class="w"> </span>
+</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="w">    </span><span class="n">where</span>
+</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="w">        </span><span class="n">nia</span><span class="o">=?</span>
+</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.615</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="na">LocalContainerEntityManagerFactoryBean</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Closing</span><span class="w"> </span><span class="n">JPA</span><span class="w"> </span><span class="n">EntityManagerFactory</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">persistence</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="err">'</span><span class="k">default</span><span class="err">'</span>
+</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.616</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Shutdown</span><span class="w"> </span><span class="n">initiated</span><span class="p">...</span>
+</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="mi">2026</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">11</span><span class="n">T13</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mf">39.622</span><span class="o">+</span><span class="mo">02</span><span class="p">:</span><span class="mo">00</span><span class="w">  </span><span class="n">INFO</span><span class="w"> </span><span class="mi">15268</span><span class="w"> </span><span class="o">---</span><span class="w"> </span><span class="o">[</span><span class="n">Hiberante2</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">ionShutdownHook</span><span class="o">]</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">HikariPool</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Shutdown</span><span class="w"> </span><span class="n">completed</span><span class="p">.</span>
+</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>
+</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="n">Process</span><span class="w"> </span><span class="n">finished</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="mi">0</span>
+</span></code></pre></div>
+<p>Imágenes de la solución por consola implementada: </p>
+<p><img alt="0004_Ejemplo_ciclos_vida_operaciones_crud_1.png" src="../img/up4-practica-1/cap4.png" /></p>
+<p><img alt="En el punto 4 se busca el alumno asociado no el último modificado.
+En el punto 5 se sobrescribe  el alumno asociado respecto el alumno que estaba modificado." src="../img/up4-practica-1/cap5.png" /></p>
+<p>En el punto 4 se busca el alumno asociado no el último modificado.
+En el punto 5 se sobrescribe  el alumno asociado respecto el alumno que estaba modificado.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../up4/bloque-4/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Bloque 4. Mejoras del proyecto. Importaciones. Proyecto Lombok">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Bloque 4. Mejoras del proyecto. Importaciones. Proyecto Lombok
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../up5/bloque-1/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Bloque 1. Relaciones a 1 a 1">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Bloque 1. Relaciones a 1 a 1
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/buig" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "content.tooltips", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

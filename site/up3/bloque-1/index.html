@@ -1,0 +1,2010 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Material del módulo de Acceso a Datos">
+      
+      
+        <meta name="author" content="Antonio Calabuig Puigvert & Sebastián Villa Ponce">
+      
+      
+        <link rel="canonical" href="https://add.buig.pro/up3/bloque-1/">
+      
+      
+        <link rel="prev" href="../../practicas/practica-up2-4-ampliacion/">
+      
+      
+        <link rel="next" href="../bloque-2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Bloque 1. Spring y Spring Boot - Acceso a Datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M17%2013h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bloque-1-spring-y-spring-boot" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="Acceso a Datos" class="md-header__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Acceso a Datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bloque 1. Spring y Spring Boot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Acceso a Datos" class="md-nav__button md-logo" aria-label="Acceso a Datos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Acceso a Datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP1 · Acceso a ficheros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP1 · Acceso a ficheros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Acceso a ficheros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Persistencia en ficheros CSV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up1/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Persistencia en ficheros XML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up1-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up1-3-ampliacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 3 Ampliación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP2 · Acceso a Bases de Datos Relacionales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP2 · Acceso a Bases de Datos Relacionales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up2/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Conexión y creación de la base de datos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up2/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Operaciones CRUD, transacciones y buenas prácticas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up2-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up2-4-ampliacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 4 Ampliación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP3 · Spring Boot. Modelo Cliente - Servidor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP3 · Spring Boot. Modelo Cliente - Servidor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Spring y Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Spring y Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es Spring?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-que-es-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ¿Qué es Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conceptos-teoricos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conceptos teóricos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conceptos teóricos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-core-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Core Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ii-aop-e-instrumentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. AOP e instrumentación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iii-mensajeria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Mensajería
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-acceso-a-datosintegracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Acceso a Datos/Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring Initializr
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring Initializr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-creacion-de-un-proyecto-spring-boot-con-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Creación de un proyecto Spring Boot con Spring Initializr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Modelo, Vista, Controlador (MVC)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Primer controlador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP4 · Modelo de datos. Entidades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP4 · Modelo de datos. Entidades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Sistemas Gestores de Bases de Datos con Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Desfase Objeto-Relacional. JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Hibernate. Mapeo de Entidades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up4/bloque-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4. Mejoras del proyecto. Importaciones. Proyecto Lombok
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP5 · Modelo de datos. Relaciones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP5 · Modelo de datos. Relaciones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 1. Relaciones a 1 a 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 2. Relaciones 1 a N
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 3. Relaciones N a M
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up5/bloque-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloque 4. Relaciones N a M con atributos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/practica-up5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Práctica 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UP6 · Creación de una API REST con Spring Boot
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UP6 · Creación de una API REST con Spring Boot
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up6/section-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../up6/section-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía práctica (IntelliJ)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-que-es-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ¿Qué es Spring?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-que-es-spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ¿Qué es Spring Boot?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-conceptos-teoricos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conceptos teóricos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Conceptos teóricos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-core-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Core Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ii-aop-e-instrumentacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. AOP e instrumentación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iii-mensajeria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Mensajería
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-acceso-a-datosintegracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Acceso a Datos/Integración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Web
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VI. Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring Initializr
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring Initializr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-creacion-de-un-proyecto-spring-boot-con-spring-initializr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Creación de un proyecto Spring Boot con Spring Initializr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bloque-1-spring-y-spring-boot">Bloque 1. Spring y Spring Boot<a class="headerlink" href="#bloque-1-spring-y-spring-boot" title="Permanent link">&para;</a></h1>
+<h2 id="1-que-es-spring">1. ¿Qué es Spring?<a class="headerlink" href="#1-que-es-spring" title="Permanent link">&para;</a></h2>
+<p>Spring es posiblemente el framework más utilizado hoy en día para la creación de aplicaciones en Java. Se define como un entorno o banco de trabajo formado por una serie de herramientas, reglas y bibliotecas de clases que facilitan enormemente la tarea de programar. Fue creado por Rod Johnson hacia el año 2003 para solucionar la gran complejidad de la tecnología Java Enterprise Edition (J2EE) de aquel momento.</p>
+<div class="admonition tip">
+<p class="admonition-title">¿Qué es un framework?</p>
+<p>Un framework es un conjunto de herramientas, reglas y bibliotecas de clases que facilitan enormemente la tarea de programar.</p>
+<p>Visto desde el punto de vista de un programador, no es más que un conjunto de funciones de bibliotecas empaquetadas que cargaremos en nuestro programa para facilitar y agilizar nuestra tarea.</p>
+</div>
+<p>Para ofrecer estas comodidades al programador, el framework se basa en los siguientes principios:</p>
+<p><strong>Inyección de dependencias (DI):</strong> técnica o patrón de diseño utilizado como una de las formas de inversión de control (IOC) para promover un acoplamiento débil. Es decir, cuando una clase necesita otra clase (dependencia), en lugar de crear el objeto dentro de la propia clase, Spring lo suministra o lo inyecta.</p>
+<p><strong>Modularidad:</strong> Proporciona modularidad, ofreciendo entre otras:</p>
+<ul>
+<li>Escalabilidad de la aplicación sin necesidad de modificar las clases.</li>
+<li>Evita la dependencia entre clases.</li>
+<li>Desarrollo sencillo con <strong>POJOs</strong> (Plain Old Java Objects).</li>
+<li>Minimiza el código <strong>boilerplate</strong> (código repetitivo simple que no hace más que aumentar las líneas de código).</li>
+</ul>
+<p><strong>Programación Orientada a Aspectos (AOP):</strong> Permite una modularización mucho mayor para hacer una separación muy clara de las diferentes tareas que cada clase debe realizar en nuestra aplicación.</p>
+<p>Simplifica el acceso a los datos gracias al ORM (Object Relational Mapping).</p>
+<p><strong>Origen y propósito:</strong> Mientras que J2EE era complejo, lento y consumía muchos recursos, Spring nació como una alternativa simple y ligera.</p>
+<p><strong>Desarrollo con POJOs:</strong> Spring permite el desarrollo sencillo mediante POJOs (Plain Old Java Objects), que son objetos o clases simples que no necesitan heredar de otras ni implementar interfaces complejas.</p>
+<p>Con las aplicaciones J2EE (Java 2 Platform, Enterprise Edition) anteriores a Spring, teníamos que crear Servlets. Un servlet es una aplicación que se ejecuta en un servidor, preparada para responder a solicitudes HTTP. Más tarde tenemos JSP (Java Server Pages), que permiten combinar elementos HTML y configuraciones XML con fragmentos de código Java para generar contenido dinámicamente.</p>
+<p>Todo esto provoca que tengamos que lanzar un servidor de aplicaciones por un lado y añadir la aplicación para ejecutarla y servirla como otra página. Podemos utilizar Servlets para escribir una aplicación web, pero hay muchos detalles intrínsecos que controlar: validación, REST, cuerpo de la solicitud/respuesta para JSON, vinculación de formularios, etc. Esto implica que gran parte de nuestro código se dedica a controlar las capas inferiores de comunicación.</p>
+<p>Con el framework Spring, realmente utilizamos servlets, pero libera al programador de esta pesada tarea, gestionándola automáticamente. Esto permite al programador centrarse en la lógica de la aplicación, sin tener que gestionar los niveles inferiores de comunicaciones, como veremos más adelante.</p>
+<h2 id="2-que-es-spring-boot">2. ¿Qué es Spring Boot?<a class="headerlink" href="#2-que-es-spring-boot" title="Permanent link">&para;</a></h2>
+<p>Aunque Spring se impuso como herramienta para desarrollar aplicaciones Java, todavía existía una cierta complejidad a la hora de configurar y poner en marcha un proyecto Spring. Por ello, en 2014, surgió Spring Boot, que es una extensión de Spring que simplifica todavía más el proceso de creación de aplicaciones Spring.</p>
+<p>Spring Boot se define como un acelerador de Spring, permitiéndonos indicar una serie de convenciones (comportamientos) que realizan tareas pesadas de configuración de archivos por nosotros. Esto supone la eliminación de complejas configuraciones manuales que se realizaban con XML.</p>
+<p>Además, Spring Boot incorpora un servidor web integrado (normalmente Tomcat), lo que ya nos permite ejecutar la aplicación directamente sin necesidad de desplegarla en un servidor de aplicaciones externo. Esto facilita enormemente el desarrollo y la prueba de aplicaciones Spring.</p>
+<p>La siguiente infografía resume qué es Spring Boot.</p>
+<p><img alt="Imagen generada por el autor con Gemini." src="../img/cap1.png" /></p>
+<p>Imagen generada por el autor con Gemini.</p>
+<h2 id="3-conceptos-teoricos">3. Conceptos teóricos<a class="headerlink" href="#3-conceptos-teoricos" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Simplemente una visión general</p>
+<p>En este apartado se presentan conceptos teóricos relacionados con Spring. No es necesario entender todos estos conceptos para comenzar a trabajar con Spring Boot, pero es útil tener una visión general del framework.</p>
+</div>
+<p>Vamos a revisar algunas de las partes más importantes del framework Spring. Simplemente se revisa lo que incorpora, sin entrar en detalles de sus partes.</p>
+<p><img alt="Core de Spring" src="../img/cap2.png" /></p>
+<p>Core de Spring</p>
+<h3 id="i-core-container">I. Core Container<a class="headerlink" href="#i-core-container" title="Permanent link">&para;</a></h3>
+<p>El contenedor principal proporciona los módulos básicos:</p>
+<ul>
+<li><strong>Core</strong> y <strong>Beans</strong> forman el esqueleto del framework, conteniendo la función de inyección de dependencias y dando soporte a los objetos POJO. Cabe aclarar que un Bean es un POJO, aunque tiene algunas características adicionales.</li>
+<li><strong>Context</strong> hereda sus características del módulo Beans y puede complementarse con funciones para la internacionalización o la carga de recursos. Además, da soporte a características de Java Enterprise como EJB y JMX (Java Management Extensions). <strong>Context-support</strong> facilita la integración de bibliotecas de otros proveedores en Spring.</li>
+<li><strong>Spring-expression</strong> contiene el Spring Expression Language (SPeL), una extensión del Unified Expression Language de la especificación JSP-2.1 (Java Server Pages).</li>
+</ul>
+<h3 id="ii-aop-e-instrumentacion">II. AOP e instrumentación<a class="headerlink" href="#ii-aop-e-instrumentacion" title="Permanent link">&para;</a></h3>
+<p>Para permitir la programación orientada a aspectos, el Spring Framework contiene el módulo <strong>spring-aop</strong>. El componente <strong>spring-instrument</strong> proporciona soporte para la implementación de carga de objetos y clases de manipulación para su uso en algunos servidores.</p>
+<h3 id="iii-mensajeria">III. Mensajería<a class="headerlink" href="#iii-mensajeria" title="Permanent link">&para;</a></h3>
+<p>Para servir como base para aplicaciones basadas en mensajes, el Spring Framework se basa en algunas de las funciones de encriptación del proyecto Spring Integration, como <strong>Message</strong>, <strong>MessageChannel</strong> o <strong>MessageHandler</strong>. Este módulo recibe el nombre de <strong>spring-messaging</strong>.</p>
+<h3 id="iv-acceso-a-datosintegracion">IV. Acceso a Datos/Integración<a class="headerlink" href="#iv-acceso-a-datosintegracion" title="Permanent link">&para;</a></h3>
+<p>Los módulos de esta categoría están diseñados para proporcionar a las aplicaciones Java las herramientas para interactuar con otras aplicaciones, así como controlar el acceso a los datos.</p>
+<ul>
+<li><strong>spring-jdbc</strong> proporciona una capa de abstracción que define la manera en que un cliente accede a la base de datos y ahorra la codificación complicada típica de JDBC.</li>
+<li><strong>spring-orm</strong> ofrece capas de integración para acceder a bases de datos relacionales en interfaces ORM populares.</li>
+<li><strong>spring-tx</strong> (da soporte a la gestión de transacciones programáticas para todas las clases y POJOs).</li>
+<li><strong>spring-oxm</strong> (capa de abstracción para el mapeo de objetos o XML).</li>
+<li><strong>spring-jms</strong>, un módulo con funciones para la producción y procesamiento de mensajes.</li>
+</ul>
+<h3 id="v-web">V. Web<a class="headerlink" href="#v-web" title="Permanent link">&para;</a></h3>
+<p>En esta categoría se encuentran los módulos específicos para aplicaciones web: <strong>spring-web</strong>, <strong>spring-webmvc</strong> y <strong>spring-websocket</strong>. Además, esta aplicación Java ha añadido funciones de integración típicas orientadas a la web como una función de carga multipart o un cliente HTTP. El módulo <strong>spring-webmvc</strong> también es conocido como <strong>web servlet</strong> y es el que contiene las implementaciones de Spring para la ejecución del patrón de arquitectura <strong>modelo-vista-controlador (MVC)</strong> y servicios web <strong>REST</strong>.</p>
+<h3 id="vi-test">VI. Test<a class="headerlink" href="#vi-test" title="Permanent link">&para;</a></h3>
+<p>El módulo <strong>spring-test</strong> permite comprobar la funcionalidad de los componentes de tu aplicación Java. Así, con la ayuda de frameworks adicionales como <strong>JUnit</strong> o <strong>TestNG</strong>, puedes realizar pruebas unitarias (centradas en un solo componente) así como pruebas de integración.</p>
+<h2 id="4-spring-initializr">4. Spring Initializr<a class="headerlink" href="#4-spring-initializr" title="Permanent link">&para;</a></h2>
+<p>Muy bien, ¿y cómo empezamos un proyecto Spring Boot? Pues la manera más rápida es utilizando el servicio de <strong>Spring Initializr</strong>, que es una herramienta en línea que permite generar un proyecto Spring Boot preconfigurado con las dependencias y las opciones que necesitas. La herramienta la encontramos aquí: <a href="https://start.spring.io/">https://start.spring.io/</a>. </p>
+<p><a href="https://start.spring.io/">start.spring.io</a></p>
+<p><img alt="image.png" src="../img/cap3.png" /></p>
+<p>Esta herramienta no es más que un asistente que nos permite configurar nuestro proyecto Spring Boot de manera rápida y sencilla. Nos permite seleccionar las dependencias que necesitamos, como por ejemplo Spring Web, Spring Data JPA, Spring Security, etc., y generar un proyecto con la estructura básica y los archivos de configuración necesarios para comenzar a desarrollar nuestra aplicación. Al final del asistente nos permite descargar un archivo ZIP con el proyecto generado, con las dependencias y la configuración que hemos seleccionado.</p>
+<div class="admonition note">
+<p class="admonition-title">¿Qué genera realmente?</p>
+<p>El mismo asistente que tenemos en la web de Spring Initializr lo podemos encontrar como plugin en IDEs como Eclipse o IntelliJ, así que trabajaremos directamente sobre el IDE, como veremos a continuación.</p>
+</div>
+<h3 id="41-creacion-de-un-proyecto-spring-boot-con-spring-initializr">4.1. Creación de un proyecto Spring Boot con Spring Initializr<a class="headerlink" href="#41-creacion-de-un-proyecto-spring-boot-con-spring-initializr" title="Permanent link">&para;</a></h3>
+<p>Aquí encontraréis varias capturas de pantalla con el proceso. Desde IntelliJ, cread un nuevo proyecto:</p>
+<p><img alt="image.png" src="../img/cap4.png" /></p>
+<p><img alt="image.png" src="../img/cap5.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">¿Qué es cada cosa?</p>
+<p><strong>Group ID (groupId):</strong> Organización que desarrolla la aplicación. Es el nombre del dominio invertido. (p. ej. org.iessalvadorgadea). Funciona como el paquete raíz del código y garantiza la unicidad del proyecto dentro de una organización.</p>
+<p><strong>Artifact ID (artifactId):</strong> Es el nombre único del proyecto o del archivo resultante (JAR o WAR). Es como se llamará el paquete final de tu aplicación (p. ej. servicios-clientes, api-rest). Se recomienda utilizar minúsculas y guiones.</p>
+<p><strong>Version:</strong> Identifica la etapa de desarrollo. Una versión con <strong>SNAPSHOT</strong> indica que está en desarrollo activo, mientras que las versiones numéricas (p. ej. 1.0.0) indican lanzamientos estables.</p>
+<p>Para nuestras prácticas, utilizad vuestro nombre en el <strong>Group ID</strong> y el nombre del proyecto en el <strong>Artifact ID</strong>. La versión se considerará “estable”.</p>
+</div>
+<p>Y finalmente seleccionad las dependencias. En nuestro proyecto inicial, seleccionad <strong>Spring Web</strong>.</p>
+<p><img alt="image.png" src="../img/cap6.png" /></p>
+<p>Y cuando el proceso termine, encontraréis una estructura de proyecto con un <strong>pom.xml</strong> configurado.</p>
+<p><img alt="image.png" src="../img/cap7.png" /></p>
+<p>Y la estructura como sigue:</p>
+<p><img alt="image.png" src="../img/cap8.png" /></p>
+<p>Ya tenemos nuestro proyecto Spring Boot creado y configurado. Ahora podemos comenzar a desarrollar nuestra aplicación. Dejaremos para más adelante una primera ejecución.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pie" >
+        
+          
+          <a href="../../practicas/practica-up2-4-ampliacion/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Práctica 4 Ampliación">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Práctica 4 Ampliación
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../bloque-2/" class="md-footer__link md-footer__link--next" aria-label="Siguiente: Bloque 2. Modelo, Vista, Controlador (MVC)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Siguiente
+              </span>
+              <div class="md-ellipsis">
+                Bloque 2. Modelo, Vista, Controlador (MVC)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/buig" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "content.tooltips", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

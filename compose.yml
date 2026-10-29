@@ -1,0 +1,13 @@
+services:
+  web:
+    image: nginx:alpine
+    container_name: pmdm
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
