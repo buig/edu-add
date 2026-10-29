@@ -1,7 +1,7 @@
 services:
   web:
     image: nginx:alpine
-    container_name: pmdm
+    container_name: add
     restart: unless-stopped
     volumes:
       - ./site:/usr/share/nginx/html:ro
