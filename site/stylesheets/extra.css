@@ -1,0 +1,35 @@
+/* ====================================================================
+   Jerarquía visual del menú lateral (navigation.sections)
+   - Nivel 0: unidades (UP1, UP2...) -> color teal, mayúsculas, compacto
+   - Nivel 1: bloques y prácticas    -> gris tenue, peso normal
+   ==================================================================== */
+
+/* Unidades (sección raíz de cada UP) */
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  color: var(--md-primary-fg-color);
+  font-weight: 700;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  opacity: .9;
+}
+
+/* Bloques y prácticas (hijos de cada unidad) */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-weight: 400;
+  font-size: .7rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Página activa dentro del bloque/práctica: la resaltamos en teal */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item > .md-nav__link--active {
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+}
+
+/* Un pelín más de sangría para que la jerarquía se note también en el espaciado */
+.md-nav--primary .md-nav[data-md-level="1"] {
+  padding-left: .2rem;
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+  margin-left: .55rem;
+}
