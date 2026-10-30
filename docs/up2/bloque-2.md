@@ -316,6 +316,9 @@ print(funciones.antiguedad_anios(10001))   # p. ej. 11
 5. Investiga la diferencia entre `cursor.fetchone()`, `cursor.fetchmany(n)` y `cursor.fetchall()`. ¿Cuándo usarías cada uno, pensando en el consumo de memoria visto en el tema anterior?
 6. (Ampliación) Instala SQLAlchemy y reescribe `RepositorioEmpleados.insertar()` usando el ORM. Compara cuántas líneas de SQL "a mano" te has ahorrado y qué has perdido en control explícito sobre la consulta generada.
 
+!!! tip "Recurso extra: repaso de SQL"
+    Si quieres repasar o reforzar los fundamentos de SQL con más calma, **[Hello SQL](https://github.com/mouredev/hello-sql)** es un curso gratuito en español de [mouredev](https://github.com/mouredev): cerca de 80 lecciones (cada una con su código de ejemplo) y unas 7 horas de vídeo, centrado en MySQL (también cubre PostgreSQL).
+
 !!! info "Material de apoyo"
     Junto a los apuntes de esta unidad se entrega un proyecto de ejemplo completo y ejecutable (`schema_employees.sql`, `bbdd.py`, `demo_tema2.py`) que crea la base de datos y recorre, paso a paso, todos los ejemplos de conexión y operaciones CRUD vistos en el tema.
 
